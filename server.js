@@ -14,7 +14,7 @@ const PORT = 3000;
 // Setup data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(__dirname));
+app.use(express.static("public"));
 const mainDir = path.join(__dirname, "/public");
 
 app.get("/notes", function(req, res) {
@@ -30,13 +30,12 @@ app.get("/api/notes/:id", function(req, res) {
     res.json(savedNotes[Number(req.params.id)]);
 });
 
-app.get("*", function(req, res) {
+app.get("/", function(req, res) {
     res.sendFile(path.join(mainDir, "index.html"));
 });
 
 // posting new notes using a ID # using the index, updating 
 // existing notes and then appending new note and re-saving the JSON to db
-
 
 app.post("/api/notes", function(req, res) {
     // let savedNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
