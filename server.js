@@ -26,7 +26,7 @@ app.get("/api/notes", function(req, res) {
 });
 
 app.get("/api/notes/:id", function(req, res) {
-    // let savedNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+    let savedNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
     res.json(savedNotes[Number(req.params.id)]);
 });
 
@@ -38,7 +38,7 @@ app.get("/", function(req, res) {
 // existing notes and then appending new note and re-saving the JSON to db
 
 app.post("/api/notes", function(req, res) {
-    // let savedNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+    let savedNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
     let newNote = req.body;
     let noteID = savedNotes.length;
     // let noteID =     Math.floor(Math.random()*1000);
@@ -50,11 +50,20 @@ app.post("/api/notes", function(req, res) {
 })
 
 app.delete("/api/notes/:id", function(req, res) {
-    // let savedNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+    let savedNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
     let noteID = req.params.id;
-    savedNotes = savedNotes.splice(noteID, 1);
 
+    console.log('current local notes: ' + JSON.stringify(savedNotes))
 
+    console.log('note to be deleted = id# ' +  (noteID))
+
+    // savedNotes.splice(noteID, 1);
+
+    savedNotes = savedNotes.filter(selectedNote => {
+        return selectedNote.id != noteID;
+    })
+
+    console.log('updated local notes: ' + JSON.stringify(savedNotes));
 
     fs.writeFileSync("./db/db.json", JSON.stringify(savedNotes));
     res.json(savedNotes);
