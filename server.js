@@ -31,7 +31,7 @@ app.get("/api/notes/:id", function(req, res) {
 });
 
 app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "./public/index.html"));
+    res.sendFile(path.join(__dirname, "index.html"));
 });
 
 // posting new notes using a ID # using the index, updating 
