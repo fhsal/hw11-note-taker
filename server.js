@@ -31,12 +31,12 @@ app.get("/api/notes/:id", function(req, res) {
 });
 
 app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "./public/index.html"));
+    res.sendFile(path.join(__dirname, "index.html"));
 });
 
 // posting new notes using a ID # using the index, updating 
 // existing notes and then appending new note and re-saving the JSON to db
-
+// 
 app.post("/api/notes", function(req, res) {
     let savedNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
     let newNote = req.body;
