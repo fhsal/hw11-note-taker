@@ -40,8 +40,8 @@ app.get("/", function(req, res) {
 app.post("/api/notes", function(req, res) {
     let savedNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
     let newNote = req.body;
-    let noteID = savedNotes.length;
-    // let noteID =     Math.floor(Math.random()*1000);
+    // let noteID = savedNotes.length;
+    let noteID =     Math.floor(Math.random()*1000);
     newNote.id = noteID;
     savedNotes.push(newNote);
     fs.writeFileSync("./db/db.json", JSON.stringify(savedNotes));
