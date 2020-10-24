@@ -19,14 +19,20 @@ app.get("/notes", function(req, res) {
     res.sendFile(path.join(__dirname, "./public/notes.html"));
 });
 
+// database route
+
 app.get("/api/notes", function(req, res) {
     res.sendFile(path.join(__dirname, "/db/db.json"));
 });
+
+// retrieve note from db.JSON based upon selected id 
 
 app.get("/api/notes/:id", function(req, res) {
     let savedNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
     res.json(savedNotes[Number(req.params.id)]);
 });
+
+// home page
 
 app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "index.html"));
