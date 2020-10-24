@@ -18,7 +18,11 @@ Several components are used in the application, built around the structure provi
 
 (3) The dependencies for fs, express and path were added and ports for local and Heroku established
 
-(4) The create/save/post function was created using a randomly generated numeric ID - which is appended to the existing set of notes and saved into the db.JSON file.  Notes are displayed The delete function was created using the id passed from the front-end to target filtering the notes once read from the db.JSON file, which then saved the updated file afterwards. 
+(4) The create/save/post function was built using a randomly generated numeric ID - which is appended to the existing set of notes and saved into the db.JSON file.  
+
+(5) Notes are displayed by being retrievd from the db.JSON using the get route created. 
+
+(6) The delete function was created using the id passed from the front-end to target filtering the notes read from the db.JSON file, which then saves the updated file afterwards. 
 
 ****************************************  
 
